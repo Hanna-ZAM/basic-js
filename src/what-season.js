@@ -12,21 +12,18 @@ const { NotImplementedError } = require('../extensions/index.js');
  * 
  */
 function getSeason(date) {
-  throw new NotImplementedError('Not implemented');
+  console.log(date);
   if((""+date).length===0) { 
   
-    return 'Unable to determine the time of year!'};
-  if ( (typeof date) == 'string'||(typeof date) == 'number'||Array.isArray(date)){
-    return 'Invalid date!'}
+    throw 'Unable to determine the time of year!'};
+  if ((date instanceof Date)&& !date.hasOwnProperty('toString')){
   
-  if (Boolean(date.getMonth())||date.getMonth()===0){
-  
- let month= date.getMonth();
+  let month= date.getMonth();
   let result=month==0||month==1||month==11?'winter':month==2||month==3||month==4?'spring':month==5||month==6||month==7?'summer':'autumn';
  
-    return result} else {
-   
-    return 'Invalid date!'
+    return result} 
+    else {
+    throw new Error("Invalid date!") ;
   }
 
 }
